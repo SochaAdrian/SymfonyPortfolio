@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+
+        .success {
+            padding: 1rem;
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .failure {
+            padding: 1rem;
+            background-color: red;
+            color: black;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            console.log("test");
+            $('form[name="asynchtobase"]').on('submit', (event) => {
+                $('.alerts').html('');
+                event.preventDefault();
+                $.ajax({
+                    url: '{{ path('app_ajaxinputs') }}',
+                    type: 'POST',
+                    data: new FormData(event.target),
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log("Udało się")
+                        $('.alerts').html("<p class='success'>" + response + "</p>");
+                    },
+                    error: function () {
+                        console.log("Zawiodłem")
+                        $('.alerts').html("<p class='failure'>Błąd podczas wysyłania danych do bazy</p>");
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+    <div class="example-wrapper">
+        <h1>Hello here you can put your Name Surname and upload a photo :) ✅</h1>
+        <h3> You want to see what was uploaded so far? <a href="{{ path('app_showajax') }}">Head here!</a></h3>
+        <div class="alerts"></div>
+        {{ form(form) }}
+    </div>
+{% endblock %}

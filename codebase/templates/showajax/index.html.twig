@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShowajaxController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .entity {
+        background-color: gray;
+        margin: 1em auto;
+        max-width: 100%;
+        width: 95%;
+        font: 18px/1.5 sans-serif;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        margin-bottom: 16px;
+        padding: 2px 6px;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Welcome at upload dashboard ✅</h1>
+
+    {% for object in objects %}
+    <div class="entity">
+        ID: {{ object.id }}<br>
+        Name : {{ object.Name }}<br>
+        Surname : {{ object.Surname }}<br>
+        Image : <img src="uploads/task_meta/{{ object.Image }}" alt="{{ object.Image }}" width="100px" height="100px"><br>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}
