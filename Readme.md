@@ -5,7 +5,7 @@ https://hub.docker.com/repository/docker/adriansocha/symfony-project
 Includes: Apache PHPmyadmin and Mysql
 
 Pulling and using docker-compose up should be enough to get your project up and running.
-
+To create tables in database ```symfony console doctrine:migrations:migrate``` or ```php bin\console doctrine:migrations:migrate```
 
 #Dockerfile: 
 
